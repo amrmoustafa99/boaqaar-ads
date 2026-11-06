@@ -2,25 +2,34 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1e293b;
 }
 
 @theme inline {
+  --font-sans: var(--font-noto-kufi), "Noto Kufi Arabic", ui-sans-serif, system-ui,
+    sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-canvas: #ffffff;
+  --color-line: #e6e8ec;
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #ffd7a8;
+  --color-orange-300: #ffb96d;
+  --color-orange-400: #ff8b1a;
+  --color-orange-500: #fe6e00;
+  --color-orange-600: #f05100;
+  --color-orange-700: #c53c00;
+  --color-orange-800: #9f2d00;
+  --color-orange-900: #7e2a0c;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
 }
