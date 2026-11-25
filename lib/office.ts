@@ -229,3 +229,41 @@ export const MOCK_COUPON_RATE = 0.1;
 export function isValidCoupon(code: string) {
   return code.trim().toUpperCase() === MOCK_COUPON_CODE;
 }
+
+export const MARKETER_TABS = [
+  { id: "data", label: "البيانات" },
+  { id: "ads", label: "الإعلانات" },
+  { id: "transfers", label: "التحويلات" },
+] as const;
+
+export type MarketerTabId = (typeof MARKETER_TABS)[number]["id"];
+
+export function parseMarketerTab(value: string | null): MarketerTabId {
+  return MARKETER_TABS.find((tab) => tab.id === value)?.id ?? "data";
+}
+
+/** Parses dd-mm-yyyy into a local Date at midnight. */
+export function parseOfficeDate(value: string) {
+  const [day, month, year] = value.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+/**
+ * Status of a marketer's balance period: none when it never had one,
+ * otherwise valid until the end of its `validUntil` day.
+ */
+export function marketerBalanceStatus(
+  marketer: Marketer,
+  today: Date,
+): "valid" | "expired" | null {
+  if (marketer.validUntil === null) return null;
+  const end = parseOfficeDate(marketer.validUntil);
+  end.setDate(end.getDate() + 1);
+  return today < end ? "valid" : "expired";
+}
+
+/**
+ * Fixed "today" for status tags in the mock data. Rendering with the real
+ * clock would differ between the prerendered HTML and the browser.
+ */
+export const MOCK_TODAY = "25-11-2026";
