@@ -66,7 +66,7 @@ export function SelectMarketersScreen({ packageId }: { packageId: OfficePackageI
       <main className="mx-auto w-full max-w-md px-4 pt-4 pb-32 lg:max-w-5xl lg:px-8 lg:pt-10 lg:pb-16">
         <div className="lg:grid lg:grid-cols-[minmax(0,36rem)_22rem] lg:items-start lg:justify-between lg:gap-12">
           <div>
-            <div className="flex items-start justify-between gap-3 rounded-[22px] border border-orange-200 bg-[#fff4ec] px-4 py-4 shadow-[0_8px_24px_rgba(254,110,0,0.1)]">
+            <div className="flex items-start justify-between gap-3 rounded-[22px] border border-line bg-white px-4 py-4 shadow-[0_8px_24px_rgba(15,23,42,0.08)]">
               <p className="flex items-end gap-2">
                 <span className="text-[34px] font-bold leading-none text-slate-900">
                   {plan.ads}
@@ -204,8 +204,8 @@ function AvailableMarketerCard({
           aria-hidden="true"
           className={
             selected
-              ? "grid h-8 w-8 shrink-0 place-items-center rounded-full bg-orange-500 text-white"
-              : "h-8 w-8 shrink-0 rounded-full border-2 border-orange-400 bg-white"
+              ? "grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-500 text-white"
+              : "h-7 w-7 shrink-0 rounded-full border-2 border-orange-400 bg-white"
           }
         >
           {selected ? <CheckIcon className="h-4 w-4" /> : null}
