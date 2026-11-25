@@ -267,3 +267,34 @@ export function marketerBalanceStatus(
  * clock would differ between the prerendered HTML and the browser.
  */
 export const MOCK_TODAY = "25-11-2026";
+
+export type OrderTotals = {
+  marketersCount: number;
+  /** Activation fees for the selected marketers, KWD. */
+  feesKwd: number;
+  transferredAds: number;
+  /** Ads left in the office package after the transfers. */
+  remainingAds: number;
+  /** Package price + fees, before any discount, KWD. */
+  subtotalKwd: number;
+};
+
+/**
+ * Totals for buying an office package with marketers.
+ * `transfers` maps each selected marketer id to the ads transferred to it.
+ */
+export function orderTotals(
+  plan: OfficePackageOffer,
+  transfers: Readonly<Record<string, number>>,
+): OrderTotals {
+  const marketersCount = Object.keys(transfers).length;
+  const transferredAds = sumValues(transfers);
+  const feesKwd = marketersCount * MARKETER_ACTIVATION_FEE_KWD;
+  return {
+    marketersCount,
+    feesKwd,
+    transferredAds,
+    remainingAds: plan.ads - transferredAds,
+    subtotalKwd: plan.priceKwd + feesKwd,
+  };
+}
