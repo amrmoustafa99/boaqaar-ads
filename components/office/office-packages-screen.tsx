@@ -15,6 +15,7 @@ import {
 import { MetaChip } from "@/components/shared/meta-chip";
 import { formatKwdAmount } from "@/lib/highlight";
 import {
+  findOfficePackage,
   OFFICE_AD_VALIDITY_DAYS,
   OFFICE_PACKAGE_VALIDITY_DAYS,
   OFFICE_PACKAGES,
@@ -22,6 +23,7 @@ import {
   type OfficePackageOffer,
 } from "@/lib/office";
 import { useOfficeStore } from "./office-store";
+import { OrderSummarySheet } from "./order-summary-sheet";
 
 const BENEFITS: readonly { icon: ReactNode; text: string }[] = [
   {
@@ -47,14 +49,17 @@ export function OfficePackagesScreen() {
   const router = useRouter();
   const { state } = useOfficeStore();
   const [selectedId, setSelectedId] = useState<OfficePackageId | null>(null);
+  const [summaryOpen, setSummaryOpen] = useState(false);
   const hasMarketers = state.marketers.length > 0;
 
   function choose(id: OfficePackageId) {
     setSelectedId(id);
     if (hasMarketers) {
       router.push(`/office/packages/${id}/marketers`);
+    } else {
+      // Nothing to select in S2, so go straight to the order summary.
+      setSummaryOpen(true);
     }
-    // Without marketers, the order summary sheet (S3) opens here directly.
   }
 
   return (
@@ -90,9 +95,19 @@ export function OfficePackagesScreen() {
           ))}
         </div>
       </main>
+
+      {summaryOpen && selectedId ? (
+        <OrderSummarySheet
+          plan={findOfficePackage(selectedId)}
+          transfers={NO_TRANSFERS}
+          onClose={() => setSummaryOpen(false)}
+        />
+      ) : null}
     </div>
   );
 }
+
+const NO_TRANSFERS: Readonly<Record<string, number>> = {};
 
 /** Same look as the `/packages` mobile card: count, selection circle, chips, price. */
 function OfficePackageCard({

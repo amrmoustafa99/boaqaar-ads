@@ -298,3 +298,8 @@ export function orderTotals(
     subtotalKwd: plan.priceKwd + feesKwd,
   };
 }
+
+/** Discount for a valid mock coupon, rounded to the 3 decimals shown. */
+export function couponDiscountKwd(subtotalKwd: number) {
+  return Math.round(subtotalKwd * MOCK_COUPON_RATE * 1000) / 1000;
+}

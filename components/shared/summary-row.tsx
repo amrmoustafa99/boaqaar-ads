@@ -1,6 +1,8 @@
+import type { ReactNode } from "react";
+
 type SummaryRowProps = {
   label: string;
-  value: string;
+  value: ReactNode;
   emphasize?: boolean;
   ltr?: boolean;
 };

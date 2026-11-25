@@ -15,6 +15,13 @@ The screens run on local mock data in `lib/office.ts` and a client store in
   (`purchase`, `activate`, `transfer`) and the toasts after each action stand
   in for API calls. Purchase and activation have no payment gateway: "pay"
   applies the result immediately.
+- **Mock coupon (`MOCK_COUPON_CODE`, `isValidCoupon`, `couponDiscountKwd`).**
+  `BUAQAR10` gives 10% off the order total (package + marketer fees); any
+  other code shows `كود الخصم غير صحيح`. Validation and the discount amount
+  must come from the API.
+- **Purchase validity date.** A mock purchase sets the package's
+  `validUntil` to the real date + 30 days in the browser. The API should
+  return it.
 
 ## Known behaviour, accepted for now
 

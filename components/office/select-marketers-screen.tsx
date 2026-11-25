@@ -16,6 +16,7 @@ import {
 } from "@/lib/office";
 import { useOfficeStore } from "./office-store";
 import { StepperRow } from "./office-ui";
+import { OrderSummarySheet } from "./order-summary-sheet";
 
 const fee = `${formatKwdAmount(MARKETER_ACTIVATION_FEE_KWD)} د.ك`;
 
@@ -28,7 +29,7 @@ export function SelectMarketersScreen({ packageId }: { packageId: OfficePackageI
 
   // Selected marketer id → ads transferred to it with the purchase.
   const [selection, setSelection] = useState<Record<string, number>>({});
-  const [, setSummaryOpen] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(false);
 
   // Drop selections that no longer apply (for example after a scenario reset).
   const transfers: Record<string, number> = {};
@@ -152,6 +153,14 @@ export function SelectMarketersScreen({ packageId }: { packageId: OfficePackageI
           onClick={() => setSummaryOpen(true)}
         />
       </div>
+
+      {summaryOpen ? (
+        <OrderSummarySheet
+          plan={plan}
+          transfers={transfers}
+          onClose={() => setSummaryOpen(false)}
+        />
+      ) : null}
     </div>
   );
 }
