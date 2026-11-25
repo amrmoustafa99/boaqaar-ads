@@ -374,3 +374,81 @@ export function DotsIcon({ className }: IconProps) {
     </svg>
   );
 }
+
+/** Shop front, for the office page. */
+export function StorefrontIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 9.5 5.4 4.5h13.2L20 9.5" />
+      <path d="M4 9.5a2.7 2.7 0 0 0 5.3 0 2.7 2.7 0 0 0 5.4 0 2.7 2.7 0 0 0 5.3 0" />
+      <path d="M5.5 12.5V20h13v-7.5" />
+      <path d="M10 20v-4.5h4V20" />
+    </svg>
+  );
+}
+
+/** Open book, for the offices directory. */
+export function BookIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 6.5c-1.8-1.3-4.3-2-7.5-2V18c3.2 0 5.7.7 7.5 2 1.8-1.3 4.3-2 7.5-2V4.5c-3.2 0-5.7.7-7.5 2Z" />
+      <path d="M12 6.5V20" />
+    </svg>
+  );
+}
+
+/** Rosette with a check, for the "licensed office" badge. */
+export function BadgeCheckIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M12 3.2 14.2 4.8 16.9 4.6 17.8 7.2 20 8.8 19.2 11.4 20 14 17.8 15.6 16.9 18.2 14.2 18 12 19.6 9.8 18 7.1 18.2 6.2 15.6 4 14 4.8 11.4 4 8.8 6.2 7.2 7.1 4.6 9.8 4.8Z" />
+      <path d="m9 11.5 2.1 2.1 4-4.2" />
+    </svg>
+  );
+}
+
+/** Price tag, for the office name and logo on ads. */
+export function TagIcon({ className }: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden="true"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M3.8 12.6V4.5a.7.7 0 0 1 .7-.7h8.1l7.6 7.6a1.4 1.4 0 0 1 0 2l-6.1 6.1a1.4 1.4 0 0 1-2 0Z" />
+      <circle cx="8.3" cy="8.3" r="1.4" />
+    </svg>
+  );
+}

@@ -5,6 +5,7 @@ import { OFFICE_SCENARIOS } from "@/lib/office";
 import { useOfficeStore } from "./office-store";
 
 const links = [
+  { href: "/office/packages", label: "باقات المكاتب" },
   { href: "/office/marketers", label: "إدارة المسوقين" },
 ] as const;
 
