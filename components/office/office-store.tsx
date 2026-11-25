@@ -119,7 +119,8 @@ function reducer(state: OfficeState, action: OfficeAction): OfficeState {
           expiredOn: null,
           availableAds: plan.ads - transferred,
           transferredAds: transferred,
-          unusedAds: plan.ads - transferred,
+          // Transferred ads count as unused until the marketer publishes them.
+          unusedAds: transferred,
         },
       };
     }
@@ -154,6 +155,7 @@ function reducer(state: OfficeState, action: OfficeAction): OfficeState {
           ...state.currentPackage,
           availableAds: state.currentPackage.availableAds - total,
           transferredAds: state.currentPackage.transferredAds + total,
+          unusedAds: state.currentPackage.unusedAds + total,
         },
         marketers: state.marketers.map((marketer) => {
           const ads = allocated.get(marketer.id);
