@@ -32,3 +32,10 @@ The screens run on local mock data in `lib/office.ts` and a client store in
   in-app navigation are not affected. Fix, if needed: read `searchParams` on
   the server so the right tab is in the first HTML (the page is then rendered
   per request instead of prerendered).
+- **Unknown ids return HTTP 200.** `/office/marketers/[marketerId]` and
+  `/office/packages/[packageId]/marketers` call `notFound()` for ids that
+  are not in the mock data. The 404 page and a `noindex` tag are shown, but
+  the status is 200: with Cache Components the check runs inside a
+  `Suspense` boundary, after the response has started streaming. Once ids
+  come from the API, decide whether a real 404 status is needed (for
+  example by checking the id before rendering, in `proxy.ts`).

@@ -9,6 +9,8 @@ export const metadata: Metadata = {
 const links = [
   { href: "/highlight", label: "تمييز الإعلان" },
   { href: "/packages", label: "باقات بوعقار الإعلانية" },
+  { href: "/office/packages", label: "باقات المكاتب" },
+  { href: "/office/marketers", label: "إدارة المسوقين" },
 ] as const;
 
 export default function HomePage() {

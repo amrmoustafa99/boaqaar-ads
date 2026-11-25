@@ -6,7 +6,9 @@ import { useOfficeStore } from "./office-store";
 
 const links = [
   { href: "/office/packages", label: "باقات المكاتب" },
+  { href: "/office/packages/premium/marketers", label: "اختيار المسوقين" },
   { href: "/office/marketers", label: "إدارة المسوقين" },
+  { href: "/office/marketers/m6", label: "تفاصيل المسوق" },
 ] as const;
 
 /** Demo index for reviewing the office flow (no design). */
