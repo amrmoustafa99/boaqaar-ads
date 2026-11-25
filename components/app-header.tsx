@@ -1,9 +1,14 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { BackArrowIcon } from "@/components/highlight/icons";
 
 type AppHeaderProps = {
   title: string;
   surface?: "white" | "muted";
+  /** Where the back button goes. Defaults to the home page. */
+  backHref?: string;
+  /** Optional icon button on the end side (for example "+" or "⋮"). */
+  action?: ReactNode;
 };
 
 const surfaceClass = {
@@ -11,7 +16,12 @@ const surfaceClass = {
   muted: "bg-[#eef3f6]",
 } as const;
 
-export function AppHeader({ title, surface = "white" }: AppHeaderProps) {
+export function AppHeader({
+  title,
+  surface = "white",
+  backHref = "/",
+  action,
+}: AppHeaderProps) {
   return (
     <>
       <header
@@ -20,12 +30,15 @@ export function AppHeader({ title, surface = "white" }: AppHeaderProps) {
         <div className="relative mx-auto flex h-12 w-full max-w-md items-center justify-center px-4">
           <h1 className="text-[17px] font-bold text-slate-800">{title}</h1>
           <Link
-            href="/"
+            href={backHref}
             aria-label="رجوع"
             className="absolute start-2 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full text-slate-700 transition hover:bg-black/5"
           >
             <BackArrowIcon className="h-[22px] w-[22px]" />
           </Link>
+          {action ? (
+            <div className="absolute end-1 top-1/2 -translate-y-1/2">{action}</div>
+          ) : null}
         </div>
       </header>
 
@@ -38,13 +51,16 @@ export function AppHeader({ title, surface = "white" }: AppHeaderProps) {
             <span className="h-5 w-px bg-slate-200" aria-hidden="true" />
             <h1 className="text-[18px] font-bold text-slate-800">{title}</h1>
           </div>
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
-          >
-            <BackArrowIcon className="h-4 w-4" />
-            <span>رجوع</span>
-          </Link>
+          <div className="flex items-center gap-2">
+            {action}
+            <Link
+              href={backHref}
+              className="inline-flex items-center gap-2 rounded-full px-3 py-2 text-[14px] font-semibold text-slate-600 transition hover:bg-slate-50 hover:text-slate-900"
+            >
+              <BackArrowIcon className="h-4 w-4" />
+              <span>رجوع</span>
+            </Link>
+          </div>
         </div>
       </header>
     </>

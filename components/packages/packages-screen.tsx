@@ -5,7 +5,6 @@ import { AppHeader } from "@/components/app-header";
 import {
   CalendarIcon,
   CheckIcon,
-  ChevronIcon,
   MegaphoneIcon,
   SparklesIcon,
 } from "@/components/highlight/icons";
@@ -16,6 +15,7 @@ import {
   type AdPackage,
   type AdPackageId,
 } from "@/lib/packages";
+import { SelectedBar } from "@/components/shared/selected-bar";
 import { CheckoutSheet } from "./checkout-sheet";
 
 export function PackagesScreen() {
@@ -66,26 +66,13 @@ export function PackagesScreen() {
       </main>
 
       <div className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[max(0.65rem,env(safe-area-inset-bottom))] lg:hidden">
-        <button
-          type="button"
+        <SelectedBar
+          label="الباقة المختارة"
+          value={selected.name}
+          valueLtr
+          amount={`${selected.priceKwd} د.ك`}
           onClick={() => setCheckoutOpen(true)}
-          className="mx-auto flex w-full max-w-md items-center justify-between gap-3 rounded-[22px] border border-line bg-white px-3 py-3 text-right shadow-[0_8px_28px_rgba(15,23,42,0.12)]"
-        >
-          <span className="flex min-w-0 items-center gap-2.5">
-            <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#f3f4f6] text-slate-700">
-              <ChevronIcon className="h-5 w-5" />
-            </span>
-            <span className="min-w-0">
-              <span className="block text-[12px] text-slate-500">الباقة المختارة</span>
-              <span dir="ltr" className="block text-[16px] font-bold text-slate-900">
-                {selected.name}
-              </span>
-            </span>
-          </span>
-          <span className="shrink-0 rounded-full bg-[#f3f4f6] px-4 py-2 text-[15px] font-bold text-slate-800">
-            {selected.priceKwd} د.ك
-          </span>
-        </button>
+        />
       </div>
 
       {checkoutOpen ? (
