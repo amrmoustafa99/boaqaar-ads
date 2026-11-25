@@ -11,19 +11,20 @@ import {
   sumValues,
   type Marketer,
 } from "@/lib/office";
+import { ActivationSheet } from "./activation-sheet";
 import { MarketerCard } from "./marketer-card";
 import { OfficeStatusCard } from "./office-status-card";
 import { useOfficeStore } from "./office-store";
 
 export function MarketersScreen() {
-  const { state, transfer, showToast } = useOfficeStore();
+  const { state, activate, transfer, showToast } = useOfficeStore();
   const office = state.currentPackage;
   const editable = office.status === "valid";
   const marketers = sortMarketers(state.marketers);
 
   const [selection, setSelection] = useState<string[]>([]);
   const [drafts, setDrafts] = useState<Record<string, number>>({});
-  const [, setActivationOpen] = useState(false);
+  const [activationOpen, setActivationOpen] = useState(false);
 
   // Only keep pending values that still apply to the current data
   // (a scenario reset or a purchase can change marketer statuses).
@@ -59,6 +60,14 @@ export function MarketersScreen() {
     );
     setDrafts({});
     showToast(`تم تحويل ${pendingTotal} إعلان بنجاح`);
+  }
+
+  function payActivation() {
+    if (selectedIds.length === 0) return;
+    activate(selectedIds);
+    setSelection([]);
+    setActivationOpen(false);
+    showToast("تم تفعيل المسوقين بنجاح");
   }
 
   const pendingActions = hasPending ? (
@@ -166,6 +175,14 @@ export function MarketersScreen() {
         <div className="fixed inset-x-0 bottom-0 z-30 px-3 pb-[max(0.65rem,env(safe-area-inset-bottom))] lg:hidden">
           {pendingActions}
         </div>
+      ) : null}
+
+      {activationOpen && selectedIds.length > 0 ? (
+        <ActivationSheet
+          marketers={marketers.filter((item) => selectedIds.includes(item.id))}
+          onClose={() => setActivationOpen(false)}
+          onPay={payActivation}
+        />
       ) : null}
     </div>
   );
