@@ -61,7 +61,7 @@ export function SelectMarketersScreen({ packageId }: { packageId: OfficePackageI
 
   return (
     <div className="min-h-dvh bg-white text-slate-800">
-      <AppHeader title="اختيار المسوقين" backHref="/office/packages" />
+      <AppHeader title="اختيار المسوقين" backHref="/office/packages" raised />
 
       <main className="mx-auto w-full max-w-md px-4 pt-4 pb-32 lg:max-w-5xl lg:px-8 lg:pt-10 lg:pb-16">
         <div className="lg:grid lg:grid-cols-[minmax(0,36rem)_22rem] lg:items-start lg:justify-between lg:gap-12">

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AppHeader } from "@/components/app-header";
+import { AppHeader, HeaderIconButton } from "@/components/app-header";
 import { PlusIcon } from "@/components/highlight/icons";
 import { SelectedBar } from "@/components/shared/selected-bar";
 import { formatKwdAmount } from "@/lib/highlight";
@@ -103,15 +103,15 @@ export function MarketersScreen() {
       <AppHeader
         title="إدارة المسوقين"
         backHref="/office"
+        raised
         action={
-          <button
-            type="button"
-            aria-label="إضافة مسوق"
+          <HeaderIconButton
+            label="إضافة مسوق"
             onClick={() => showToast("سيتم ربطها بشاشة إضافة مسوق")}
-            className="grid h-11 w-11 place-items-center rounded-full text-orange-500 transition hover:bg-orange-50"
+            className="text-orange-500"
           >
             <PlusIcon className="h-6 w-6" />
-          </button>
+          </HeaderIconButton>
         }
       />
 

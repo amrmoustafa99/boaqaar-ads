@@ -64,7 +64,7 @@ export function OfficePackagesScreen() {
 
   return (
     <div className="min-h-dvh bg-white text-slate-800">
-      <AppHeader title="باقات بوعقار الإعلانية" backHref="/office" />
+      <AppHeader title="باقات بوعقار الإعلانية" backHref="/office" raised />
 
       <main className="mx-auto w-full max-w-md px-4 pt-4 pb-10 lg:max-w-5xl lg:px-8 lg:pt-10 lg:pb-16">
         <section aria-labelledby="benefits-heading" className="lg:mx-auto lg:max-w-3xl">

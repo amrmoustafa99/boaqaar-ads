@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { AppHeader } from "@/components/app-header";
+import { AppHeader, HeaderIconButton } from "@/components/app-header";
 import {
   CalendarIcon,
   CheckIcon,
@@ -53,7 +53,7 @@ export function MarketerDetailsScreen({
   if (!marketer) {
     return (
       <div className="min-h-dvh bg-white text-slate-800">
-        <AppHeader title="تفاصيل المسوق" backHref="/office/marketers" />
+        <AppHeader title="تفاصيل المسوق" backHref="/office/marketers" raised />
         <main className="mx-auto w-full max-w-md px-6 py-16 text-center lg:max-w-5xl">
           <p className="text-[16px] font-bold text-slate-900">المسوق غير موجود</p>
           <Link
@@ -72,14 +72,11 @@ export function MarketerDetailsScreen({
       <AppHeader
         title={marketer.name}
         backHref="/office/marketers"
+        raised
         action={
-          <button
-            type="button"
-            aria-label="خيارات"
-            className="grid h-11 w-11 place-items-center rounded-full text-slate-700 transition hover:bg-black/5"
-          >
+          <HeaderIconButton label="خيارات">
             <DotsIcon className="h-5 w-5" />
-          </button>
+          </HeaderIconButton>
         }
       />
 
